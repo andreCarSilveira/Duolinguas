@@ -1,0 +1,41 @@
+{% extends 'global/base.html' %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'global/css/cadastro.css' %}">
+{% endblock 'head' %}
+
+{% block 'dashboard' %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+    <div class="container-cadastro">
+        <form action="{% url 'list' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                <h5>Login:</h5>
+                <input name="nome" class="input-format" type="text">
+            
+                <h5>Senha:</h5>
+                <input name="senha" class="input-format" type="password">
+                
+                <br><br>
+           
+                <h5>Foto:</h5>
+                <input name="foto" class="input-format" type="file">
+                <br><br>
+                <div class="btn-cadastrar">
+                    <button type="submit" class="btn">Cadastrar</button>
+                </div>
+            </div>
+        </form>
+        
+    </div>
+{% endblock %}
+

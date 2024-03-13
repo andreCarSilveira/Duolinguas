@@ -1,0 +1,26 @@
+.container-input {
+    display: flex;
+    padding: 5px;
+}
+.container-cadastro {
+   border: 1px solid red; 
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: calc(100vh - 65px);
+}
+.input-format {
+    width: 450px;
+    
+}
+.btn-cadastrar {
+    display: flex;
+    justify-content: center;
+}
+.btn-cadastrar .btn {
+    padding: 6px;
+    background-color: #8b008b;
+    color: white;
+    border-radius: 10px;
+    outline: none;
+}

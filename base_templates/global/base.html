@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duolinguas</title>
+    <link rel="stylesheet" href="{% static 'global\css\base.css' %}">
+    {% block 'head' %}
+    {% endblock %}
+</head>
+<body>
+    <header class="cabecalho-principal">
+        <div>
+            <a href="{% url 'duolinguas:index' %}">
+                <h1>Duolinguas</h1>
+            </a>
+        </div>
+        <div>
+            {% if user.is_authenticated %}
+                {% if user.perfil.foto %}
+                    <a href="{% url 'duolinguas:login' %}">
+                        <img class="img-perfil" src="{{ user.perfil.foto.url }}" alt="{{ user.username }}'s profile picture">
+                    </a>
+                {% else %}
+                    <a href="{% url 'duolinguas:login' %}">
+                        <img class="img-perfil" src="{% static 'global/imgs/nouser.png' %}" alt="Default profile picture">
+                    </a>
+                {% endif %}
+            {% else %}
+                <a href="{% url 'duolinguas:login' %}">
+                    <img class="img-perfil" src="{% static 'global/imgs/nouser.png' %}" alt="">
+                </a>
+            {% endif %}
+        </div>
+    </header>
+
+    <div>
+        {% block 'dashboard' %}
+        {% endblock %}
+    </div>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <footer>
+        <div><h2>Dualinguas @ 2024</h2></div>
+    </footer>
+</body>
+</html>
